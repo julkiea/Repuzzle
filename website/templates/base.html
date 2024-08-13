@@ -1,20 +1,33 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Repuzzle</title>
 </head>
 <body>
     <!-- Navigation bar-->
     <header class="header">
-        <a href="#" class="logo">LOGO</a>
+        <a href="#" class="logo">RePuzzle</a>
         <nav class="navbar">
-            <a href="#">Home</a>
-            <a href="#">About us</a>
-            <a href="#">Team</a>
-            <a href="#">Projects</a>
-            <a href="#">Contact</a>
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="#about">O NAS</a>
+            <a href="#">PUZZLE</a>
+            <a href="#">SPRZEDAJ</a>
+            <a href="#">KONTAKT</a>
+            {% if user.is_authenticated %}
+            <a href="#">WYLOGUj</a>
+            {% else %}
+            <a href="{% url 'login_user' %}">ZALOGUJ</a>
+            {% endif %}
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user"></i>
+            </a>
         </nav>
     </header>
     

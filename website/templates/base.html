@@ -10,6 +10,19 @@
     <title>Repuzzle</title>
 </head>
 <body>
+    
+    <!--Messages-->
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert">
+            {{ message }}
+            <span class="closebtn">&times;</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
     <!-- Navigation bar-->
     <header class="header">
         <a href="#" class="logo">RePuzzle</a>
@@ -33,6 +46,19 @@
     
     {% block content %}
     {% endblock %}
+
+    <script>
+
+      document.querySelectorAll('.closebtn').forEach(function(button) {
+      button.onclick = function() {
+        const alert = this.parentElement;
+        alert.classList.add('fadeout');
+        setTimeout(function() {
+          alert.style.display = 'none';
+        }, 600);
+      };
+    });
     
+    </script>
 </body>
 </html>

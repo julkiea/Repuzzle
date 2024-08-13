@@ -1,4 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<main>
+    <section id="home">
+      <h1>RePuzzle</h1>
+      <h3>Daj swoim puzzlom nowe życie!</h3>
+      <a href="#about">Dowiedz się więcej</a>
+    </section>
+
+    <section id="about">
+      <h1>Witajcie w RePuzzle!</h1>
+      <h3>Pudełka z puzzlami zalegają Ci w szafie, a układanie kolejny raz tego samego obrazka nie sprawia Ci już przyjemności? 
+        Mamy rozwiązanie!
+      </h3>
+      <p> Witaj w naszym wyjątkowym zakątku dla miłośników puzzli! Nasza platforma powstała z myślą o wszystkich, którzy z pasją układają puzzle i szukają sposobu na ich rotację w swojej kolekcji. RePuzzle to miejsce, gdzie możesz łatwo kupować i sprzedawać puzzle, dzieląc się swoją pasją z innymi.
+      </p>
+      <p> Dzięki platformie, każdy zestaw może znaleźć nowego właściciela, a Ty zyskujesz możliwość poznania nowych, fascynujących układanek bez konieczności ciągłego powiększania swojej kolekcji. To nie tylko oszczędność miejsca i pieniędzy, ale także ekologiczny sposób na rozwijanie swojego hobby. Dołącz do nas i odkryj, jak wiele radości może dać wymiana puzzli!
+      </p>
+      <div class="link-container">
+        <a href="{% url 'home' %}">Przeglądaj puzzle</a>
+        <a href="#">Sprzedaj puzzle</a>
+    </div>
+    </section>
+</main>
+      
+
+
 {% endblock %}

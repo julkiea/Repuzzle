@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@300;400;500;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+ html {
+    scroll-behavior: smooth;
+ }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background: white;
+    background-size: cover;
+    background-position: center;
+
+}
+
+main {
+    flex: 1; 
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: #96CEB4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Titan One';
+    font-size: 28px;
+    color: white;
+    text-shadow: 
+    -2px -2px 0 black,  
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar a {
+    font-family: 'Nunito';
+    font-weight: 400;
+    position: relative;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: .3s;
+}
+
+.navbar a:hover::before {
+    width: 100%;
+}
+
+.icon-size {
+    width: 22px;
+    height: 22px;
+}
+
+main {
+    position: absolute;
+    width: 100vw;
+    /* height: calc(100vh - 60px); */
+    height: 100vh;
+  }
+ 
+
+
+#home {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    word-wrap: break-word;
+    background-image: url('/static/images/puzzle_background.webp');
+    background-size: cover;
+    background-position: center 75%; 
+    background-repeat: no-repeat;
+
+  }
+
+  #home h1 {
+    font-family: 'Titan One';
+    font-size: 96px;
+    color: white;
+    text-shadow: 
+    -2px -2px 0 black,  
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: -220px;
+  }
+
+  #home h3 {
+    font-family: 'Nunito';
+    font-weight: 600;
+    font-size: 40px;
+    color: black;
+    margin-bottom: 20px;
+  }
+
+  #home a {
+    display: inline-block;
+    font-family: 'Maven Pro';
+    font-size: 18px;
+    font-weight: 300;
+    text-decoration: none;
+    color: black;
+    background-color: #D9D9D9;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid #063831;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(6, 51, 49, 0.1);
+  }
+
+  #home a:hover {
+    box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+#about {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+
+    background-image: url('/static/images/puzzle_background_2.webp');
+    background-size: cover;
+    background-position: center 90%; 
+    background-repeat: no-repeat;
+    
+
+  }
+
+  #about h1 {
+    font-family: 'Titan One';
+    font-size: 40px;
+    color: white;
+    text-shadow: 
+    -2px -2px 0 black,  
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black;
+    text-decoration: none;
+    font-weight: 600;
+    padding-top: 100px;
+    padding-left: 50px;
+    margin-bottom: 20px;
+  }
+
+  #about h3 {
+    font-family: 'Nunito';
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 500px;
+  }
+
+  #about p {
+    font-family: 'Maven Pro';
+    font-weight: 300;
+    font-size: 16px;
+    color: black;
+    padding-left: 50px;
+    padding-right: 500px;
+    padding-bottom: 20px;
+  }
+
+.link-container {
+    display: flex;
+    justify-content: left;
+    gap: 20px; /* Odstęp między linkami */
+    padding-left: 50px;
+    padding-top: 40px;
+}
+
+.link-container a {
+    font-family: 'Maven Pro';
+    font-size: 16px;
+    font-weight: 300;
+    text-decoration: none;
+    text-align: center;
+    color: white; 
+    width: 300px;
+    padding: 10px 20px;
+    border: 1px solid #063831; 
+    border-radius: 25px; 
+    background-color: #063831; 
+    box-shadow: 0 0 10px rgba(6, 51, 49, 0.1);
+}
+
+.link-container a:hover {
+  box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}

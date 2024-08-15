@@ -12,6 +12,7 @@
 <body>
     
     <!--Messages-->
+    <!--
     <div class="container">
       {% if messages %}
         {% for message in messages %}
@@ -22,31 +23,46 @@
         {% endfor %}
       {% endif %}
     </div>
-
-    <!-- Navigation bar-->
+-->
+    <!-- Header -->
     <header class="header">
         <a href="#" class="logo">RePuzzle</a>
+
+        <!-- Navbar -->
         <nav class="navbar">
-            <a href="{% url 'home' %}">HOME</a>
-            <a href="#about">O NAS</a>
-            <a href="#">PUZZLE</a>
-            <a href="#">SPRZEDAJ</a>
-            <a href="#">KONTAKT</a>
+            <a href="#home">home</a>
+            <a href="#about">o nas</a>
+            <a href="#">puzzle</a>
+            <a href="#">kategorie</a>
+            <a href="#">sprzedaj</a>
+            <a href="#">kontakt</a>
             {% if user.is_authenticated %}
-            <a href="#">WYLOGUj</a>
+            <a href="#">wyloguj</a>
             {% else %}
-            <a href="{% url 'login_user' %}">ZALOGUJ</a>
+            <a href="{% url 'login_user' %}">zaloguj</a>
             {% endif %}
-            <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-            <a href="#"><i class="fas fa-user"></i>
-            </a>
         </nav>
+
+        <!-- Icons -->
+        <div class = "icons">
+          <div class="fas fa-search" id="search-btn"></div>
+          <div class="fas fa-shopping-cart" id="cart-btn"></div>
+          <div class="fas fa-bars" id="menu-btn"></div>
+        </div>
+
+        <div class="search-form">
+          <input type="search" id="search-box" placeholder="Szukaj tutaj...">
+          <label for="search-box" class="fas fa-search"></label>
+        </div>
     </header>
     
     {% block content %}
     {% endblock %}
 
+
+    <script src="static/js/script.js"></script>
+
+  <!--  
     <script>
 
       document.querySelectorAll('.closebtn').forEach(function(button) {
@@ -60,5 +76,6 @@
     });
     
     </script>
+    -->
 </body>
 </html>

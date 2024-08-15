@@ -2,45 +2,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@300;400;500;700&display=swap');
 
-
+/* Wszystkie elementy na stronie */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0; /* Usuwa marginesy */
+  padding: 0; /* Usuwa wewnętrzne odstępy */
+  box-sizing: border-box; /* Zmienia model obliczenia rozmiarów elementów */
+  outline: none; /* Usuwa kontur wokół elementu */
+  border: none; /* Usuwa obramowanie wokół elementu */
+  text-decoration: none; /* Usuwa dekoracje tekstu */
+
+  transition: .2s linear; /* Ustawia płynne przejście dla zmian stylu, trwają 0.2 sekundy i mają przebieg liniowy */
 }
  
- html {
-    scroll-behavior: smooth;
+html {
+  font-size: 62.5%; 
+  /* Ustawia rozmiar czcionki bazowy dla całej strony. Wartość 62,5% oznacza, że 1em będzie równy 10px, co ułatwia przeliczanie jednostek. */
+  overflow-x: hidden; /* Ukrywa poziomy pasek przewijania */
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+  /* Ustawia płynne przewijanie strony */
  }
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-    background: white;
-    background-size: cover;
-    background-position: center;
-
+/* Cały pasek przewijania */
+html::-webkit-scrollbar {
+  width: .8rem;
 }
 
+/* Tor paska przewijania */
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
 
+/* Część paska przewijania którą użytkownik przeciąga */
+html::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5rem;
+}
+
+/* Tło całego dokumentu html */
+body {
+    background: white;
+}
+
+.container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 2rem 7%;
+  height: 100vh;
+  scroll-snap-align: start;
+}
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    background: #96CEB4;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
+  height: 6rem;
+  background: #96CEB4;
+  display: flex; /* Używa modelu Flexbox, który ułatwia układanie i wyrównywanie elementów wewnątrz nagłówka. */
+  align-items: center;
+  justify-content: space-between; /* Rozmieszcza elementy wewnątrz nagłówka równomiernie */
+  padding: 1.5rem 7%; /* Dodaje wewnętrzne odstępy (padding) wewnątrz nagłówka. Górny i dolny odstęp wynosi 1.5rem, a boczne odstępy to 7% szerokości strony. */
+  position: fixed; /* Ustawia pozycję nagłówka jako stałą.  */
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Ustawia nagłówek na górze strony, rozciągając go na pełną szerokość od lewej do prawej krawędzi ekranu. */
+  z-index: 1000; /* Ustawia wysoki indeks warstwowy */
 }
 
-.logo {
+/* Logo */
+.header .logo {
     font-family: 'Titan One';
-    font-size: 28px;
+    font-size: 1.75rem;
     color: white;
     text-shadow: 
     -2px -2px 0 black,  
@@ -51,127 +86,172 @@ body {
     font-weight: 600;
 }
 
-.navbar a {
+/* Linki w pasku nawigacyjnym */
+.header .navbar a {
     font-family: 'Nunito';
     font-weight: 400;
-    position: relative;
-    font-size: 16px;
+    margin: 0.7rem;
+    margin-bottom: 0.2rem;
+    font-size: 1.6rem;
     color: black;
-    text-decoration: none;
-    margin-left: 40px;
+    position: relative;
+    text-transform: capitalize; /* Pierwsza litera elementu ustawiona na wielką */
 }
 
 .navbar a::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: black;
-    transition: .3s;
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0.2rem;
+  background: black;
+  transition: .3s;
 }
 
 .navbar a:hover::before {
-    width: 100%;
+  width: 100%;
 }
 
-.icon-size {
-    width: 22px;
-    height: 22px;
+.header .icons div{
+  color: black;
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin-left: 2rem;
+
 }
 
-main {
-    flex: 1;
-    width: 100vw;
-    /* height: calc(100vh - 60px); */
-    height: 100vh;
-  }
- 
+.header .icons div:hover {
+  color: #063831;
+}
+
+#menu-btn {
+  display: none;
+}
+
+.header .search-form {
+  position: absolute;
+  top: 115%;
+  right: 5%;
+  background: white;
+  border: 2px solid #063831; 
+  width: 50rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.header .search-form.active {
+  transform: scaleY(1);
+}
+
+.header .search-form input {
+  height: 100%;
+  width: 100%;
+  font-size: 1.6rem;
+  color: black;
+  padding: 1rem;
+  text-transform: none;
+}
+
+.header .search-form label {
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin-right: 1.5rem;
+  color: black;
+}
+
+.header .search-form label:hover {
+  color: #063831;
+}
 
 
-#home {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    word-wrap: break-word;
-    background-image: url('/static/images/puzzle_background.webp');
-    background-size: cover;
-    background-position: center 75%; 
-    background-repeat: no-repeat;
+.home {
+  display: flex;
+  justify-content: center;
+  background-image: url('/static/images/puzzle_background.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 95%;
 
-  }
+}
 
-  #home h1 {
-    font-family: 'Titan One';
-    font-size: 96px;
-    color: white;
-    text-shadow: 
-    -2px -2px 0 black,  
-     2px -2px 0 black,
-    -2px  2px 0 black,
-     2px  2px 0 black;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: -220px;
-  }
+.home .content {
+  max-width: 60rem;
+  text-align: center;
+  margin-top: 15rem;
+}
 
-  #home h3 {
-    font-family: 'Nunito';
-    font-weight: 600;
-    font-size: 40px;
-    color: black;
-    margin-bottom: 20px;
-  }
+.home .content h1 {
+  font-family: 'Titan One';
+  font-size: 6rem;
+  color: white;
+  text-shadow: 
+  -2px -2px 0 black,  
+   2px -2px 0 black,
+  -2px  2px 0 black,
+   2px  2px 0 black;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
 
-  #home a {
+.home .content h3 {
+  font-family: 'Nunito';
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+
+.home .content a {
     display: inline-block;
     font-family: 'Maven Pro';
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 300;
     text-decoration: none;
     color: black;
     background-color: #D9D9D9;
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 1rem 3rem;
+    border-radius: 2.5rem;
     border: 1px solid #063831;
-    width: 250px;
+    width: 25rem;
     text-align: center;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(6, 51, 49, 0.1);
+    transition: 0.3s;
+    text-transform: none;
   }
 
-  #home a:hover {
+.home .content a:hover {
     box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
 
-#about {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+.about {
+
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    text-align: left;
-
+    position: relative;
+    justify-content: center;
     background-image: url('/static/images/puzzle_background_2.webp');
-    background-size: cover;
-    background-position: center 90%; 
     background-repeat: no-repeat;
-    
-
+    background-size: cover;
+    background-position: center 95%;
   }
 
-  #about h1 {
+.about .content {
+    max-width: 60%;
+    margin-top: -10%;
+  }
+
+.about .content h1 {
     font-family: 'Titan One';
-    font-size: 40px;
+    font-size: 4rem;
     color: white;
     text-shadow: 
     -2px -2px 0 black,  
@@ -180,69 +260,59 @@ main {
      2px  2px 0 black;
     text-decoration: none;
     font-weight: 600;
-    padding-top: 100px;
-    padding-left: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
+
   }
 
-  #about h3 {
+.about .content h3 {
     font-family: 'Nunito';
     font-weight: 600;
-    font-size: 20px;
+    font-size: 2rem;
     color: black;
-    margin-bottom: 20px;
-    padding-left: 50px;
-    padding-right: 500px;
+    margin-bottom: 1%;
   }
 
-  #about p {
+.about .content p {
     font-family: 'Maven Pro';
     font-weight: 300;
-    font-size: 16px;
+    font-size: 1.5rem;
     color: black;
-    padding-left: 50px;
-    padding-right: 500px;
-    padding-bottom: 20px;
+    margin-bottom: 2%;
   }
 
-.link-container {
+.about .content .link-container {
     display: flex;
     justify-content: left;
-    gap: 20px; /* Odstęp między linkami */
-    padding-left: 50px;
-    padding-top: 40px;
+    gap: 1.25rem; /* Odstęp między linkami */
+    margin-bottom: 1%;
 }
 
-.link-container a {
+.about .content .link-container a {
     font-family: 'Maven Pro';
-    font-size: 16px;
+    font-size: 1.5rem;
     font-weight: 300;
     text-decoration: none;
     text-align: center;
     color: white; 
-    width: 300px;
-    padding: 10px 20px;
+    width: 18.75rem;
+    padding: 0.624rem 1.25rem;
     border: 1px solid #063831; 
-    border-radius: 25px; 
+    border-radius: 1.6rem; 
     background-color: #063831; 
     box-shadow: 0 0 10px rgba(6, 51, 49, 0.1);
+    transition: 0.3s;
 }
 
-.link-container a:hover {
+.about .content .link-container a:hover {
   box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}
-
-.container {
-  padding: 10px;
-  margin: 10px;
-  margin-top: 80px;
 
 }
 
+/*  
 .alert {
-  padding: 20px;
+  padding: 5px;
   background-color: rgba(150, 206, 180, 0.35);
   color: black;
   font-family: 'Maven Pro';
@@ -253,24 +323,121 @@ main {
   text-align: center;
 }
 
-
-/* Style dla przycisku zamykania */
 .closebtn {
   position: absolute;
   top: -5px;
   right: 40px;
   color: #063831;
-  font-size: 50px;
+  font-size: 30px;
   cursor: pointer;
 }
 
-/* Efekt zamykania */
 .closebtn:hover {
   color: black;
 }
 
-/* Efekt zanikania */
 .alert.fadeout {
   opacity: 0;
   transition: opacity 0.6s ease-out;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries */
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%; 
+   }
+
+  .header {
+    padding: 1.5rem 2rem ;
+
+  }
+
+  section {
+    padding: 2rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+
+  .header .navbar {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    background: white;
+    width: 30rem;
+    height: calc(100vh - 9rem);
+  }
+
+  .header .navbar.active{
+    right: 0;
+
+  }
+  
+  .header .navbar a {
+    color: black;
+    display: block;
+    padding: .5rem;
+    font-size: 2rem;
+  }
+
+  .header .search-form {
+    width: 90%;
+    right: 2rem;
+  }
+
+  .home {
+    background-position: left;
+    justify-content: center;
+  }
+
+  .home content h1 {
+    font-size: 4rem;
+  }
+
+  .home content h3 {
+    font-size: 1.5rem;
+  }
+
+  .about .content {
+    max-width: 90%;
+    align-items: center;
+    
+  }
+
+  
+
+
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 50%; 
+   }
 }

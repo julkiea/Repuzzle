@@ -310,6 +310,91 @@ section {
 
 }
 
+/* FOOTER */
+.footer {
+  background: #96CEB4;
+  text-align: center;
+  height: 25rem;
+}
+
+.footer .media {
+  padding: 1rem 0;
+}
+
+.footer .media a {
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 4rem;
+  color: #063831;
+}
+
+.footer .media a:hover {
+  color: white;
+}
+
+.footer .links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+}
+
+.footer .links a {
+  font-family: 'Nunito';
+  font-size: 1.6rem;
+  color: black;
+  margin: 0.7rem;
+  position: relative;
+}
+
+.footer .links a::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0.2rem;
+  background: black;
+  transition: .3s;
+}
+
+.footer .links a:hover::before {
+  width: 100%;
+}
+
+.footer .privacy {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+}
+
+.footer .privacy a {
+  font-family: 'Nunito';
+  font-size: 1.6rem;
+  color: #063831;
+  margin: 0.7rem;
+  position: relative;
+}
+
+.footer .privacy a:hover {
+  color: white;
+}
+
+.footer .credit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: 'Nunito';
+  font-size: 1.6rem;
+  margin: 0.7rem;
+}
+
+
 /*  
 .alert {
   padding: 5px;
@@ -430,6 +515,10 @@ section {
     align-items: center;
     
   }
+
+
+
+
 
   
 

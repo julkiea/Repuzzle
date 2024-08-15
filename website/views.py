@@ -45,4 +45,6 @@ def login_user(request):
 
 # Logo out user
 def logout_user(request):
+    logout(request)
+    messages.success(request, "Wylogowano pomyślnie...")
     return redirect('home')

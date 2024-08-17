@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .forms import RegisterUserForm
 
 # Home page
 def home(request):
@@ -9,7 +10,43 @@ def home(request):
 
 # Register user 
 def register_user(request):
-    return render(request, 'register_user.html', {})
+
+    # Check if signing in
+    if request.method == 'POST':
+
+        # Create instance of SignUpForm
+        form = RegisterUserForm(request.POST)
+
+                # Check if form is valid
+        if form.is_valid():
+
+            # Create a user 
+            form.save()
+            
+            # Get username and password from cleaned data from form
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            # Authenticate user
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+
+                login(request, user)
+                
+                # If authentication is successful
+                messages.success(request, "Zarejestrowano pomyślnie...")
+
+                return redirect('home')
+
+            else:
+                messages.success(request, "Rejestracja nie powiodła się... Spróbuj ponownie!")
+
+    else:
+        form = RegisterUserForm()
+        return render(request, 'register_user.html', {'form':form})
+
+    return render(request, 'register_user.html', {'form': form})
 
 # Log in user 
 def login_user(request):
@@ -31,7 +68,8 @@ def login_user(request):
             login(request, user)
 
             # Message about logging in 
-            messages.success(request, "Zalogowano poprawnie...")
+            messages.success(request, "Zalogowano pomyślnie...")
+            return redirect('home')
 
         else: 
             messages.success(request, "Wystąpił błąd w trakcie logowania... Spróbuj ponownie!")
@@ -43,7 +81,7 @@ def login_user(request):
             
     return render(request, 'login_user.html', {})
 
-# Logo out user
+# Log out user
 def logout_user(request):
     logout(request)
     messages.success(request, "Wylogowano pomyślnie...")

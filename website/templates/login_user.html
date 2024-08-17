@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- Log in form -->
+<div class="login-signup-container">
+    <div class="forms-container">
+        <div class="login-signup">
+            <form method="POST" action="{% url 'login_user' %}" class="log-in-form">
+                {% csrf_token %}
+                <h2 class="title">Zaloguj się</h2>
+
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Nazwa użytkownika" required>
+                </div>
+
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Hasło" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Zaloguj się</button>
+                <p class="text-register">Nie masz konta? <a href="{% url 'register_user' %}">Zarejestruj się</a></p>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

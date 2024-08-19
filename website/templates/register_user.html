@@ -1,4 +1,60 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+<section class="login">
+    <div class="login-signup-container">
+        <div class="content">
+            <div class="forms-container">
+                <form method="POST" action="{% url 'register_user' %}" class="sign-up-form">
+                    {% csrf_token %}
+                    <h2 class="title">Zarejestruj się</h2>
+
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        
+                        {{form.username}}
+                    </div>
+
+                    <div class="form-text">Wymagana. 150 znaków lub mniej. Tylko litery, cyfry i @/./+/-/_ .</div>
+
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        {{form.first_name}}
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        {{form.last_name}}
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        {{form.email}}
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        {{form.password1}}
+                    </div>
+                    
+                    <div class="form-text"><ul><li>Twoje hasło nie może być podobne do Twoich danych osobowych.</li><li>Twoje hasło musi zawierać co najmniej 8 znaków.</li><li>Twoje hasło nie może być często używanym hasłem.</li><li>Twoje hasło nie może zawierać wyłącznie cyfr</li></ul></div>
+
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        {{form.password2}}
+                    </div>
+
+                    <div class="form-text">Wpisz to samo hasło w celu weryfikacji.</div>
+
+                    <button type="submit" class="btn-submit">Zarejestruj się</button>
+                    <p class="text-register">Masz już konto? <a href="{% url 'login_user' %}">Zaloguj się</a></p>
+                </form>
+            </div>
+            <div class="img-container">
+                <img src="{% static 'images/puzzle_register.webp' %}">
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

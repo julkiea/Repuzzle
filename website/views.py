@@ -40,8 +40,11 @@ def register_user(request):
                 return redirect('home')
 
             else:
-                messages.success(request, "Rejestracja nie powiodła się... Spróbuj ponownie!")
-
+                messages.error(request, "Rejestracja nie powiodła się... Sprawdź poprawność formularza i spróbuj ponownie!")
+                return redirect('register_user')
+        #else:
+            #messages.error(request, "Rejestracja nie powiodła się... Sprawdź poprawność formularza i spróbuj ponownie!")
+            #return redirect('register_user')
     else:
         form = RegisterUserForm()
 
@@ -71,17 +74,26 @@ def login_user(request):
             return redirect('home')
 
         else: 
-            messages.success(request, "Wystąpił błąd w trakcie logowania... Spróbuj ponownie!")
+            messages.error(request, "Wystąpił błąd w trakcie logowania... Spróbuj ponownie!")
             return redirect('login_user')
         
     # If not logging in 
     else:
         return render(request, 'login_user.html')
-            
-    return render(request, 'login_user.html', {})
+
 
 # Log out user
 def logout_user(request):
     logout(request)
     messages.success(request, "Wylogowano pomyślnie...")
     return redirect('home')
+
+
+# Add a puzzle
+
+def add_puzzle(request):
+    if request.user.is_authenticated:
+        return render(request, 'add_puzzle.html', {})
+    else:
+        messages.warning(request, "Musisz być zalogowany, aby sprzedawać puzzle. Zaloguj się i spróbuj ponownie...")
+        return redirect('home')

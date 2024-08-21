@@ -397,7 +397,7 @@ section {
 .login {
   display: flex;
   justify-content: center;
-  background-color: #e4f7ee;
+  background-color: #f1f9f5;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 95%;
@@ -414,7 +414,7 @@ section {
   box-shadow: 0 60px 40px -30px #063831;
   position: relative;
   max-width: 1020px;
-  border: solid 0.1rem #063831;
+  border: solid 0.1rem #063831; 
 }
 
 .login .login-signup-container .content {
@@ -441,7 +441,7 @@ section {
   width: 100%;
   margin: 25% auto;
   text-align: center;
-
+  padding: 0 auto;
 }
 
 .sign-up-form {
@@ -449,6 +449,7 @@ section {
   width: 100%;
   margin: 0 auto;
   text-align: left;
+  
 }
 
 
@@ -537,6 +538,10 @@ section {
   margin:1rem 0;
 }
 
+.text-register a{
+  color: #063831;
+}
+
 .login .login-signup-container .content .img-container {
   position: absolute;
   height: 100%;
@@ -544,11 +549,14 @@ section {
   background-color: white;
   left: 0;
   top: 0;
+  border-radius: 3.3rem;
+  border: solid 0.1rem #063831;
+  /* box-shadow: 5px 5px 12px 3px #063831; */
 }
 
 .login .login-signup-container .content .img-container img {
   height: 100%;
-
+  width: 100%;
   border-radius: 3.3rem;
 }
 
@@ -628,6 +636,36 @@ section {
     padding: 2rem;
   }
 
+  .login .login-signup-container {
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
+  }
+
+  .login .login-signup-container .content {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+  }
+
+  .login .login-signup-container .content .forms-container {
+    position: revert;
+    width: 100%;
+    height: auto;
+  }
+
+
+  .login .login-signup-container .content .img-container {
+    display: none;
+  }
+
+  .sign-up-form {
+    margin: 20% auto;
+  }
+
+
+
 }
 
 @media (max-width: 768px) {
@@ -680,17 +718,12 @@ section {
     
   }
 
-
-
-
-
-  
-
-
 }
 
 @media (max-width: 991px) {
   html {
     font-size: 50%; 
    }
+
+   
 }

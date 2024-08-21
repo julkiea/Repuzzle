@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from .models import UserProfile  
+from .models import UserProfile, Category, Puzzle, PuzzleImage
 
 # Inline profile info to user
 class ProfileInline(admin.StackedInline):
@@ -20,3 +20,7 @@ admin.site.unregister(User)
 # Re-register with the new UserAdmin
 admin.site.register(User, UserAdmin)
 
+
+admin.site.register(Category)
+admin.site.register(Puzzle)
+admin.site.register(PuzzleImage)

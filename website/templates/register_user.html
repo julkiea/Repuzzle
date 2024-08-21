@@ -1,12 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+
 <section class="login">
+    {% if form.errors %}
+    <div class="alert alert-error">
+        <span class="message">Twój formularz ma błędy</span>
+    {% for field in form %}
+        {% if field.errors %}
+            <span class="message">{{ field.errors }}</span>
+            
+        {% endif %}
+    {% endfor %}
+
+        <div class="close-btn">
+        <span class="fas fa-times"></span>
+        </div>
+    </div>
+{% endif %}
+
     <div class="login-signup-container">
         <div class="content">
             <div class="forms-container">
                 <form method="POST" action="{% url 'register_user' %}" class="sign-up-form">
                     {% csrf_token %}
+<!--
+                    {% if form.errors %}
+                        <div class="alert alert-error">
+                            <span class="message">Twój formularz ma błędy</span>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <span class="message">{{ field.errors }}</span>
+                                
+                            {% endif %}
+                        {% endfor %}
+
+                            <div class="close-btn">
+                            <span class="fas fa-times"></span>
+                            </div>
+                        </div>
+                    {% endif %}
+-->
                     <h2 class="title">Zarejestruj się</h2>
 
                     <div class="input-field">

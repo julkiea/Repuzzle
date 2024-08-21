@@ -28,3 +28,36 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 post_save.connect(create_profile, sender= User)
+
+# Create a category model
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta():
+        verbose_name_plural = "categories"
+
+# Create a puzzle model 
+
+class Puzzle(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=2500, default='', blank= True, null = True)
+    brand = models.CharField(max_length=50)
+    category = models.ManyToManyField(Category)
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=7)
+    owner = models.ForeignKey(User, on_delete= models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+# Create a puzzle image model
+
+class PuzzleImage(models.Model):
+    puzzle = models.ForeignKey(Puzzle, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to='uploads/puzzles')
+
+    def __str__(self):
+        return f'Image for {self.puzzle.name}'

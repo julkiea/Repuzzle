@@ -20,3 +20,14 @@ window.onscroll = () => {
     navbar.classList.remove('active');
     searchForm.classList.remove('active');
 }
+
+
+document.querySelectorAll('.close-btn').forEach(function(button) {
+    button.onclick = function() {
+      const alert = this.parentElement;
+      alert.classList.add('fadeout');
+      setTimeout(function() {
+        alert.style.display = 'none';
+      }, 600);
+    };
+  });

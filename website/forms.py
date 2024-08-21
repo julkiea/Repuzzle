@@ -7,37 +7,37 @@ from django import forms
 # User creation form 
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label="", widget = forms.TextInput(attrs={
+    username = forms.CharField(label="", required=True, widget = forms.TextInput(attrs={
         'class': 'input',
         'type': 'text',
         'placeholder': 'Nazwa użytkownika'
         }))
     
-    first_name = forms.CharField(label="", widget=forms.TextInput(attrs={
+    first_name = forms.CharField(label="", required=True, widget=forms.TextInput(attrs={
         'class': 'input', 
         'type': 'text',
         'placeholder': 'Imię'
         }))
 
-    last_name = forms.CharField(label="", widget=forms.TextInput(attrs={
+    last_name = forms.CharField(label="", required=True, widget=forms.TextInput(attrs={
         'class': 'input', 
         'type': 'text',
         'placeholder': 'Nazwisko'
         }))
 
-    email = forms.CharField(label="", widget = forms.TextInput(attrs={
+    email = forms.CharField(label="", required=True, widget = forms.TextInput(attrs={
         'class': 'input',
         'type': 'email',
         'placeholder': 'Adres e-mail'
         }))
     
-    password1 = forms.CharField(label="", widget = forms.TextInput(attrs={
+    password1 = forms.CharField(label="", required=True, widget = forms.TextInput(attrs={
         'class': 'input',
         'type': 'password',
         'placeholder': 'Hasło'
         }))
 
-    password2 = forms.CharField(label="", widget = forms.TextInput(attrs={
+    password2 = forms.CharField(label="", required=True, widget = forms.TextInput(attrs={
         'class': 'input',
         'type': 'password',
         'placeholder': 'Potwierdź hasło'

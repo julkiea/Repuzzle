@@ -12,18 +12,41 @@
 <body>
     
     <!--Messages-->
-    <!--
-    <div class="container">
+
+
       {% if messages %}
         {% for message in messages %}
-          <div class="alert">
-            {{ message }}
-            <span class="closebtn">&times;</span>
+          {% if message.tags == "success" %}
+          <div class="alert alert-success show">
+            <span class="fa fa-check-circle"></span>
+            <span class="message">{{ message }}</span>
+            <div class="close-btn">
+              <span class="fas fa-times"></span>
+            </div>
           </div>
+
+          {% elif message.tags == "error" %}
+          <div class="alert alert-error show">
+            <span class="fa fa-minus-circle"></span>
+            <span class="message">{{ message }}</span>
+            <div class="close-btn">
+              <span class="fas fa-times"></span>
+            </div>
+          </div>
+
+          {% else %}
+          <div class="alert alert-warning show">
+            <span class="fa fa-exclamation-circle"></span>
+            <span class="message">{{ message }}</span>
+            <div class="close-btn">
+              <span class="fas fa-times"></span>
+            </div>
+          </div>
+
+          {% endif %}
         {% endfor %}
       {% endif %}
-    </div>
-    -->
+  
     <!-- Header -->
     <header class="header">
         <a href="#" class="logo">RePuzzle</a>
@@ -34,7 +57,7 @@
             <a href="{% url 'home' %}#about">o nas</a>
             <a href="#">puzzle</a>
             <a href="#">kategorie</a>
-            <a href="#">sprzedaj</a>
+            <a href="{% url 'add_puzzle' %}">sprzedaj</a>
             <a href="#">kontakt</a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout_user' %}">wyloguj</a>
@@ -74,7 +97,7 @@
         <a href="{% url 'home' %}#about">O nas</a>
         <a href="#">Puzzle</a>
         <a href="#">Kategorie</a>
-        <a href="#">Sprzedaj</a>
+        <a href="{% url 'add_puzzle' %}">Sprzedaj</a>
         <a href="#">Kontakt</a>
       </div>
 
@@ -91,20 +114,5 @@
 
     <script src="static/js/script.js"></script>
 
-  <!--  
-    <script>
-
-      document.querySelectorAll('.closebtn').forEach(function(button) {
-      button.onclick = function() {
-        const alert = this.parentElement;
-        alert.classList.add('fadeout');
-        setTimeout(function() {
-          alert.style.display = 'none';
-        }, 600);
-      };
-    });
-    
-    </script>
-    -->
 </body>
 </html>

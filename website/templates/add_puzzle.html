@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<section class="add-puzzle">
+
+    <div class="box">
+        <div class="forms-container-puzzle">
+            <form method="POST" action="{% url 'add_puzzle' %}" enctype="multipart/form-data" class="add-puzzle-form">
+                {% csrf_token %}
+
+                <!-- Formularz -->
+                <div class="title">Wypełnij formularz, aby wystawić puzzle na sprzedaż</div>
+
+                <!-- Nazwa i producent -->
+                <div class="label">Podaj nazwę puzzli (wymagane) oraz producenta.</div>
+                <div class="input-field">
+                    {{ form.name }}
+                </div>
+                <div class="input-field">
+                    {{ form.brand }}
+                </div>
+
+                <!-- Opis puzzli -->
+                <div class="label">Dodaj opis puzzli.</div>
+                <div class="input-field">
+                    {{ form.description }}
+                </div>
+
+                <!-- Cena -->
+                <div class="label">Podaj cenę puzzli (wymagane).</div>
+                <div class="input-field">
+                    {{ form.price }}
+                </div>
+
+                <!-- Kategoria puzzli -->
+                <div class="label">Wybierz kategorie puzzli.</div>
+                <div class="form-group">
+                    {{ form.category }}
+                </div>
+
+                <!-- Stan puzzli -->
+                <div class="label">Zaznacz, w jakim stanie są puzzli.</div>
+                <div class="input-field">
+                    {{ form.condition }}
+                </div>
+
+                <!-- Zdjęcia puzzli -->
+                <div class="label">Dodaj zdjęcie.</div>
+                    <div class="input-field">
+                        {{ form.image }}
+                    </div>
+
+
+                <!-- Przycisk submit -->
+                <button type="submit" class="btn-submit">Dodaj puzzle</button>
+            </form>
+        </div>
+    </div>
+    
+</section>
+{% endblock %}

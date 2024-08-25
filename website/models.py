@@ -43,21 +43,21 @@ class Category(models.Model):
 # Create a puzzle model 
 
 class Puzzle(models.Model):
+    CONDITION_CHOICES= [
+        ('Nowy', 'Nowy'),
+        ('Bardzo dobry', 'Bardzo dobry'),
+        ('Dobry', 'Dobry'),
+        ('Średni', 'Średni'),
+        ('Zły', 'Zły'),
+    ]
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=2500, default='', blank= True, null = True)
     brand = models.CharField(max_length=50)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, blank=True, null=True)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=7)
     owner = models.ForeignKey(User, on_delete= models.CASCADE)
-
+    condition = models.CharField(max_length=12, choices=CONDITION_CHOICES, default='Bardzo dobry')
+    image = models.ImageField(blank=True, null= True, upload_to='uploads/puzzles')
+    added_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
-
-# Create a puzzle image model
-
-class PuzzleImage(models.Model):
-    puzzle = models.ForeignKey(Puzzle, on_delete=models.CASCADE)
-    images = models.ImageField(upload_to='uploads/puzzles')
-
-    def __str__(self):
-        return f'Image for {self.puzzle.name}'

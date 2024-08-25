@@ -10,7 +10,7 @@
   outline: none; /* Usuwa kontur wokół elementu */
   border: none; /* Usuwa obramowanie wokół elementu */
   text-decoration: none; /* Usuwa dekoracje tekstu */
-
+  font-family: 'Nunito';
   transition: .2s linear; /* Ustawia płynne przejście dla zmian stylu, trwają 0.2 sekundy i mają przebieg liniowy */
 }
  
@@ -232,7 +232,6 @@ section {
   }
 
 .about {
-
     display: flex;
     flex-direction: column;
     position: relative;
@@ -260,7 +259,6 @@ section {
     text-decoration: none;
     font-weight: 600;
     margin-bottom: 2%;
-
   }
 
 .about .content h3 {
@@ -393,6 +391,167 @@ section {
   margin: 0.7rem;
 }
 
+
+/* Add puzzle form */
+.add-puzzle{
+  display: flex;
+  justify-content: center;
+  background-color: #f1f9f5;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 95%;
+  height: 900px;
+}
+
+/* .add-puzzle .add-puzzle-container {
+  width: 100%;
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 3.3rem;
+  box-shadow: 0 60px 40px -30px #063831;
+  position: relative;
+
+  border: solid 0.1rem #063831; 
+  height: auto;
+} */
+
+.add-puzzle .box {
+  width: calc(100% - 6rem);
+  height: calc(100% - 6rem); 
+  position: relative;
+  top:57%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+
+}
+
+.add-puzzle .box .forms-container-puzzle {
+  position: relative; 
+  height: auto; 
+  width: 95%;
+  left: 0;
+  top: 0;
+
+}
+
+.add-puzzle-form {
+  max-width: 150rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 auto;
+  align-items: center;
+}
+
+.add-puzzle-form .form-group{
+  margin-bottom: 15px;
+  font-family: 'Nunito';
+  font-size: 1rem;
+  color: black;
+  font-weight: 300;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* CHECKBOXES*/
+
+.custom-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;  
+  gap: 15px; 
+  font-size: 1.4rem;
+  font-family: 'Nunito';
+  color: rgb(74, 73, 73);       
+}
+
+.custom-checkbox-group .custom-checkbox {
+  display: flex;
+  align-items: center;  
+  margin-bottom: 10px; 
+
+}
+
+.condition-input {
+  background-color: rgb(238, 234, 234);
+  width: 32rem;
+  font-family: 'Nunito';
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(74, 73, 73);
+  margin-left: 1rem;
+
+}
+
+.image-input {
+  background-color: rgb(238, 234, 234);
+  width: 32rem;
+  font-family: 'Nunito';
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(74, 73, 73);
+}
+
+.add-puzzle-form .label {
+  font-family: 'Nunito';
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(74, 73, 73);
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.add-puzzle-form .title {
+  font-family: 'Nunito';
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(74, 73, 73);
+  text-shadow: none;
+  margin-bottom: 0.5rem;
+  margin-top: 0%;
+}
+.add-puzzle-form .input-field{
+  max-width: 150rem;
+  width: 100%;
+  height: 3.5rem;
+  background-color: rgb(238, 234, 234);
+  border: solid 0.2rem rgb(74, 73, 73);
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.add-puzzle-form .btn-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+ }
+
+.add-puzzle-form .btn-submit:hover {
+  box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
+  -webkit-transform: scale(1.025);
+  transform: scale(1.025);
+}
+
+.add-puzzle-form .input-field input {
+  font-family: 'Nunito';
+  font-size: 1.5rem;
+  color: black;
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  width: 32rem;
+  padding-left: 1rem;
+}
+
 /* Log in form */
 .login {
   display: flex;
@@ -415,11 +574,12 @@ section {
   position: relative;
   max-width: 1020px;
   border: solid 0.1rem #063831; 
+  height: auto;
 }
 
 .login .login-signup-container .content {
   width: calc(100% - 6rem);
-  height: calc(100vh - 20em);
+  height: calc(100vh - 20rem);
   background-color: white;
   position: absolute;
   top: 50%;
@@ -451,8 +611,6 @@ section {
   text-align: left;
   
 }
-
-
 
 .title {
   font-family: 'Titan One';
@@ -737,6 +895,7 @@ section {
     position: revert;
     width: 100%;
     height: auto;
+    margin-bottom: 2rem;
   }
 
 
@@ -748,7 +907,13 @@ section {
     margin: 20% auto;
   }
 
-
+  .add-puzzle-form .link-container {
+    display: inline;
+    margin-bottom: 0.2rem;
+  }
+  .add-puzzle .box {
+    top: 55%;
+  }
 
 }
 

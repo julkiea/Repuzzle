@@ -1,8 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
-
+from .models import Puzzle, Category
 from django.contrib.auth.models import User
 from django import forms
-
+from django.forms import inlineformset_factory
 
 # User creation form 
 
@@ -53,3 +53,97 @@ class RegisterUserForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
+
+
+# Create a PuzzleForm
+
+class AddPuzzleForm(forms.ModelForm):
+    CONDITION_CHOICES = [
+        ('Nowy', 'Nowy'),
+        ('Bardzo dobry', 'Bardzo dobry'),
+        ('Dobry', 'Dobry'),
+        ('Średni', 'Średni'),
+        ('Zły', 'Zły'),
+    ]
+    
+    name = forms.CharField(
+        label="",
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Nazwa',
+            'aria-label': 'Nazwa puzzli'
+        })
+    )
+    
+    description = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Opis',
+            'aria-label': 'Opis puzzli'
+        })
+    )
+    
+    brand = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Producent',
+            'aria-label': 'Producent puzzli'
+        })
+    )
+    
+    price = forms.DecimalField(
+        label="",
+        required=True,
+        widget=forms.NumberInput(attrs={
+            'class': 'input',
+            'type': 'number',
+            'placeholder': 'Cena',
+            'step': '0.01',
+            'min': '0',
+            'aria-label': 'Cena puzzli'
+        })
+    )
+
+    condition = forms.ChoiceField(
+        label="",
+        required=False,
+        choices=CONDITION_CHOICES,
+        widget=forms.Select(attrs={
+            'class': 'condition-input',
+            'aria-label': 'Stan puzzli'
+        })
+    )
+    
+    category = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=Category.objects.all().order_by('name'),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'custom-checkbox-group custom-checkbox',
+            'aria-label': 'Kategoria puzzli'
+        }),
+    )
+
+    image = forms.FileField(
+        label="",
+        required=False,
+        widget=forms.ClearableFileInput(attrs={
+            'class': 'image-input',
+            'aria-label': 'Obrazek puzzli'
+        })
+    )
+
+    class Meta:
+        model = Puzzle
+        fields = ('name', 'description', 'brand', 'category', 'price', 'condition', 'image')
+
+    def __init__(self, *args, **kwargs):
+        super(AddPuzzleForm, self).__init__(*args, **kwargs)
+

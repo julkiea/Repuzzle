@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, AddPuzzleForm
 
 # Home page
 def home(request):
@@ -90,10 +90,26 @@ def logout_user(request):
 
 
 # Add a puzzle
-
 def add_puzzle(request):
     if request.user.is_authenticated:
-        return render(request, 'add_puzzle.html', {})
+        if request.method == 'POST':
+            form = AddPuzzleForm(request.POST, request.FILES)
+
+            if form.is_valid():
+                puzzle = form.save(commit=False)
+                puzzle.owner = request.user
+                puzzle.save()
+
+                messages.success(request, "Puzzle zostały dodane pomyślnie!")
+                return redirect('home')
+            else:
+                messages.error(request, "Wystąpił błąd podczas dodawania puzzli... Spróbuj ponownie")
+                return render(request, 'add_puzzle.html', {'form': form})
+        else:
+            form = AddPuzzleForm()
+
+        return render(request, 'add_puzzle.html', {'form': form})
+    
     else:
-        messages.warning(request, "Musisz być zalogowany, aby sprzedawać puzzle. Zaloguj się i spróbuj ponownie...")
+        messages.warning(request, "Musisz być zalogowany, aby sprzedawać puzzle. Zaloguj się i spróbuj ponownie.")
         return redirect('home')

@@ -70,6 +70,16 @@
         <div class = "icons">
           <div class="fas fa-search" id="search-btn"></div>
           <div class="fas fa-shopping-cart" id="cart-btn"></div>
+          {% if user.is_authenticated %}
+          <div class="fas fa-user" id="user-btn">
+          {% endif %}
+            <div class="user-profile">
+              <a href="#">Moje puzzle</a>
+              <a href="#">Moje zamówienia</a>
+              <a href="#">Zaktualizuj profil</a>
+              <a href="#">Zaktualizuj hasło</a>
+            </div> 
+          </div>
           <div class="fas fa-bars" id="menu-btn"></div>
         </div>
 
@@ -112,7 +122,7 @@
     </section>
 
 
-    <script src="static/js/script.js"></script>
+    <script src="../static/js/script.js"></script>
 
 </body>
 </html>

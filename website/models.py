@@ -53,11 +53,11 @@ class Puzzle(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=2500, default='', blank= True, null = True)
     brand = models.CharField(max_length=50)
-    category = models.ManyToManyField(Category, blank=True, null=True)
+    category = models.ManyToManyField(Category, blank=True)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=7)
     owner = models.ForeignKey(User, on_delete= models.CASCADE)
     condition = models.CharField(max_length=12, choices=CONDITION_CHOICES, default='Bardzo dobry')
-    image = models.ImageField(blank=True, null= True, upload_to='uploads/puzzles')
+    image = models.ImageField(upload_to='uploads/puzzles')
     added_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name

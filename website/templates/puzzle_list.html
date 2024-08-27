@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class = "puzzle">
+    <div class="puzzle-box-container">
+        {% for puzzle in puzzles %}
+            <div class="puzzle-box">
+                <div class="puzzle-image">
+                    <img src="{{ puzzle.image.url }}">
+                </div>
+                <div class="puzzle-content">
+                    <h3>{{ puzzle.name }}</h3>
+                    <div class="price">{{ puzzle.price }} zł</div>
+                    <div class="link-container">
+                        <a href="{% url 'puzzle' puzzle.id %}"{{ puzzle.id }}>Szczegóły</a>
+                        <a href="#" id="cart"><i class="fas fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% endblock %}

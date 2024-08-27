@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegisterUserForm, AddPuzzleForm
+from .models import Puzzle
 
 # Home page
 def home(request):
@@ -112,4 +113,17 @@ def add_puzzle(request):
     
     else:
         messages.warning(request, "Musisz być zalogowany, aby sprzedawać puzzle. Zaloguj się i spróbuj ponownie.")
+        return redirect('home')
+    
+def puzzle_list(request):
+    puzzles  = Puzzle.objects.all()
+    return render(request, 'puzzle_list.html', {'puzzles': puzzles})
+
+
+def puzzle(request, pk):
+    try:
+        puzzle = get_object_or_404(Puzzle, id=pk)
+        return render(request, "puzzle.html", {'puzzle': puzzle})
+    except Puzzle.DoesNotExist:
+        messages.error(request, "Te puzzle nie istnieją.")
         return redirect('home')

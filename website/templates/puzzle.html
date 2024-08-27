@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<section class="login">
+    <div class="login-signup-container">
+        <div class="content">
+            <div class="puzzle-details-container">
+                <div class="puzzle-title">{{ puzzle.name }}</div>
+                <p class="puzzle-details">Producent: {{ puzzle.brand }}</p>
+                <p class="puzzle-details">Kategorie: {{ puzzle.category }}</p>
+                <p class="puzzle-details">Stan: {{ puzzle.condition }}</p>
+                <p class="puzzle-details">Cena: {{ puzzle.price }}</p>
+                <p class="puzzle-details">Właściciel: <a href="#"> {{ puzzle.owner }} </a></p>
+                <a href="#" class="add-to-cart">Dodaj do koszyka <i class="fas fa-shopping-cart"></i></a>
+                <p class="small-text">Wystawiono na sprzedaż: {{ puzzle.added_at}}</p>
+            </div>
+            <div class="puzzle-img-container">
+                <img src="{{ puzzle.image.url }}">
+            </div>
+
+            <div class="puzzle-description-container">
+                <p class="puzzle-details">Opis: </p>
+                <p class="puzzle-details">{{ puzzle.description }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

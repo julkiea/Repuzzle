@@ -90,7 +90,7 @@ class AddPuzzleForm(forms.ModelForm):
     
     brand = forms.CharField(
         label="",
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={
             'class': 'input',
             'type': 'text',

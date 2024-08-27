@@ -55,10 +55,10 @@
         <nav class="navbar">
             <a href="{% url 'home' %}#home">home</a>
             <a href="{% url 'home' %}#about">o nas</a>
-            <a href="#">puzzle</a>
+            <a href="{% url 'puzzle_list' %}">puzzle</a>
             <a href="#">kategorie</a>
             <a href="{% url 'add_puzzle' %}">sprzedaj</a>
-            <a href="#">kontakt</a>
+            <a href="{% url 'home' %}#contact">kontakt</a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout_user' %}">wyloguj</a>
             {% else %}
@@ -105,10 +105,10 @@
       <div class="links">
         <a href="{% url 'home' %}#home">Home</a>
         <a href="{% url 'home' %}#about">O nas</a>
-        <a href="#">Puzzle</a>
+        <a href="{% url 'puzzle_list' %}">Puzzle</a>
         <a href="#">Kategorie</a>
         <a href="{% url 'add_puzzle' %}">Sprzedaj</a>
-        <a href="#">Kontakt</a>
+        <a href="{% url 'home' %}#contact">Kontakt</a>
       </div>
 
       <div class="privacy">

@@ -15,6 +15,7 @@ class UserProfile(models.Model):
     zipcode = models.CharField(max_length=50, blank=True)
     country = models.CharField(max_length=50, blank=True)
     bank_account_code = models.CharField(max_length=26, blank = True)
+    image = models.ImageField(upload_to='uploads/users', default="{% static 'images/userimage.png' %}")
 
     def __str__(self):
         return self.user.username

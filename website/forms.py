@@ -1,8 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import Puzzle, Category
+from .models import Puzzle, Category, UserProfile
 from django.contrib.auth.models import User
 from django import forms
-from django.forms import inlineformset_factory
+
 
 # User creation form 
 
@@ -54,6 +54,99 @@ class RegisterUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
 
+# Create a UserInfoForm
+
+class UserInfoForm(forms.ModelForm):
+
+    phone = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Numer telefonu',
+            'aria-label': 'Numer telefonu'
+        })
+    )
+
+    address1 = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Adres zamieszkania 1',
+            'aria-label': 'Adres zamieszkania 1'
+        })
+    )
+
+    address2 = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Adres zamieszkania 2',
+            'aria-label': 'Adres zamieszkania 2'
+        })
+    )
+
+    city = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Miasto',
+            'aria-label': 'Miasto'
+        })
+    )
+
+    zipcode = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Kod pocztowy',
+            'aria-label': 'Kod pocztowy'
+        })
+    )
+
+    country = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Kraj',
+            'aria-label': 'Kraj'
+        })
+    )
+
+    bank_account_code = forms.CharField(
+        label="",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'text',
+            'placeholder': 'Numer konta bankowego',
+            'aria-label': 'Numer konta bankowego'
+        })
+    )
+
+    image = forms.FileField(
+        label="",
+        required=False,
+        widget=forms.ClearableFileInput(attrs={
+            'class': 'image-input',
+            'aria-label': 'Zdjęcie profilowe'
+        })
+    )
+
+    class Meta():
+        model = UserProfile
+        fields = ("phone", "address1", "address2", "city", "zipcode",  )
 
 # Create a PuzzleForm
 

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import RegisterUserForm, AddPuzzleForm
-from .models import Puzzle
+from .forms import RegisterUserForm, AddPuzzleForm, UserInfoForm
+from .models import Puzzle, UserProfile
+from django.core.paginator import Paginator
 
 # Home page
 def home(request):
@@ -116,8 +117,14 @@ def add_puzzle(request):
         return redirect('home')
     
 def puzzle_list(request):
-    puzzles  = Puzzle.objects.all()
-    return render(request, 'puzzle_list.html', {'puzzles': puzzles})
+    puzzles  = Puzzle.objects.all().order_by('added_at')
+    paginator = Paginator(puzzles, 9) 
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    print(f"Page Number: {page_number}")
+    print(f"Page Object: {page_obj}")
+    return render(request, 'puzzle_list.html', {'page_obj': page_obj})
 
 
 def puzzle(request, pk):
@@ -126,4 +133,20 @@ def puzzle(request, pk):
         return render(request, "puzzle.html", {'puzzle': puzzle})
     except Puzzle.DoesNotExist:
         messages.error(request, "Te puzzle nie istnieją.")
+        return redirect('home')
+    
+
+def update_info(request):
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user__id = request.user.id)
+
+        form = UserInfoForm(request.POST or None, instance = user)
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, "Twój profil został zaktualizowany pomyślnie...")
+            return redirect('home')
+        return render(request, "update_info.html", {'form':form})
+    else:
+        messages.warning(request, "Aby zaktualizować profil, musisz być zalogowany...")
         return redirect('home')

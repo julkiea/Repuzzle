@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<section class="add-puzzle">
+    <div class="box">
+        <div class="forms-container-puzzle">
+            <form method="POST" action="{% url 'update_info' %}" enctype="multipart/form-data" class="add-puzzle-form">
+                {% csrf_token %}
+                            
+                <!-- Formularz -->
+                <div class="title">Wypełnij formularz, aby zaktualizować swoje dane.</div>
+
+                <!-- Zdjęcie profilowe -->
+                <div class="label">Dodaj zdjęcie profilowe.</div>
+                    <div class="input-field">
+                        {{ form.image }}
+                    </div>
+
+                <!-- Numer telefonu  -->
+                <div class="label">Podaj numer telefonu.</div>
+                <div class="input-field">
+                    {{ form.phone}}
+                </div>
+                
+                <!-- Adres  -->
+                <div class="label">Podaj adres zamieszkania.</div>
+                <div class="input-field">
+                    {{ form.address1 }}
+                </div>
+                
+                <!-- Adres  -->
+                <div class="label">Dodaj drugi adres. </div>
+                <div class="input-field">
+                    {{ form.address2 }}
+                </div>
+                
+                <!-- Miasto  -->
+                <div class="label">Podaj miasto zamieszkania.</div>
+                <div class="input-field">
+                    {{ form.city }}
+                </div>
+                                
+                <!-- Kod pocztowy -->
+                <div class="label">Podaj kod pocztowy.</div>
+                <div class="input-field">
+                    {{ form.zipcode }}
+                </div>
+          
+                <!-- Kraj -->
+                <div class="label">Podaj kraj.</div>
+                <div class="input-field">
+                    {{ form.country }}
+                </div>
+
+                <button type="submit" class="btn-submit">Zaktualizuj profil</button>
+            </form>
+        </div>
+    </div>
+    
+</section>
+{% endblock %}

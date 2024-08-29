@@ -9,4 +9,5 @@ urlpatterns = [
     path('add_puzzle/', views.add_puzzle, name = 'add_puzzle'),
     path('puzzle_list/', views.puzzle_list, name='puzzle_list'),
     path('puzzle/<int:pk>', views.puzzle, name= 'puzzle'),
+    path('update_info/', views.update_info, name = 'update_info'),
 ]

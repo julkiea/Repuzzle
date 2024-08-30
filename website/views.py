@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import RegisterUserForm, AddPuzzleForm, UserInfoForm
+from .forms import RegisterUserForm, AddPuzzleForm, UserInfoForm, UpdatePasswordForm
 from .models import Puzzle, UserProfile
 from django.core.paginator import Paginator
 
@@ -149,4 +149,26 @@ def update_info(request):
         return render(request, "update_info.html", {'form':form})
     else:
         messages.warning(request, "Aby zaktualizować profil, musisz być zalogowany...")
+        return redirect('home')
+    
+def update_password(request):
+    if request.user.is_authenticated:
+        user = User.objects.get(id = request.user.id)
+        if request.method == "POST":
+            form = UpdatePasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Twoje hasło zostało zaktualizowane pomyślnie!")
+                login(request, user)
+                return redirect('home')
+            else:
+
+                messages.error(request, "W trakcie zmiany hasła wystąpił błąd... Sprawdź, czy oba wprowadzane hasła są jednakowe i spróbuj ponownie!")
+                return redirect('update_password')
+
+        else:
+            form = UpdatePasswordForm(user)
+            return render(request, "update_password.html", {"form": form})
+    else:
+        messages.success(request, "Aby zaktualizować hasło, musisz być zalogowany...")
         return redirect('home')

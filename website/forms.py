@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from .models import Puzzle, Category, UserProfile
 from django.contrib.auth.models import User
 from django import forms
@@ -147,6 +147,39 @@ class UserInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfile
         fields = ("phone", "address1", "address2", "city", "zipcode",  )
+
+
+# Create a Update User Password Form
+
+class UpdatePasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label="",
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'password',
+            'placeholder': 'Nowe hasło',
+            'aria_label': 'Nowe hasło 1'
+        })
+    )
+
+    new_password2 = forms.CharField(
+        label="",
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'input',
+            'type': 'password',
+            'placeholder': 'Potwierdź nowe hasło',
+            'aria_label': 'Nowe hasło 2'
+        })
+    )
+
+    class Meta():
+        model = User
+        fields = ("new_password1", "new_password2")
+
+    def __init__(self, *args, **kwargs):
+        super(UpdatePasswordForm, self).__init__(*args, **kwargs)
 
 # Create a PuzzleForm
 

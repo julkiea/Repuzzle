@@ -8,7 +8,8 @@ from django.core.paginator import Paginator
 
 # Home page
 def home(request):
-    return render(request, 'home.html', {})
+    puzzles = Puzzle.objects.all().order_by('-added_at')[:6]
+    return render(request, 'home.html', {'puzzles': puzzles})
 
 # Register user 
 def register_user(request):

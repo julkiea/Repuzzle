@@ -281,6 +281,8 @@ section {
     transform: scale(1.1);
   }
 
+/* ABOUT US SECTION */
+
 .about {
     display: flex;
     flex-direction: column;
@@ -330,7 +332,7 @@ section {
 .about .content .link-container {
     display: flex;
     justify-content: left;
-    gap: 1.25rem; /* Odstęp między linkami */
+    gap: 1.25rem;
     margin-bottom: 1%;
 }
 
@@ -355,6 +357,25 @@ section {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 
+}
+
+
+/* NEW PUZZLE SECTION */
+
+.news {
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ustawia przestrzeń między elementami, co umożliwia umieszczenie paginacji na dole */
+  background-color: white;
+  height: 1000px;
+  padding: 2rem 0;
+}
+
+.news .puzzle-box-container {
+  max-width: 100%;
+  margin-top: -10%;
 }
 
 /* FOOTER */
@@ -452,7 +473,7 @@ section {
   padding: 2rem 0; /* Dodatkowe wcięcie od góry i dołu */
 }
 
-.puzzle .puzzle-box-container {
+.puzzle-box-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -483,7 +504,7 @@ section {
 } */
 
 
-.puzzle .puzzle-box-container .puzzle-box {
+.puzzle-box-container .puzzle-box {
   flex: 1 1 30rem;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5rem;
@@ -495,42 +516,42 @@ section {
   
 }
 
-.puzzle .puzzle-box-container .puzzle-box .puzzle-image {
+.puzzle-box-container .puzzle-box .puzzle-image {
   position: relative;
   text-align: center;
   padding-top: 2rem;
   overflow: hidden;
 }
 
-.puzzle .puzzle-box-container .puzzle-box .puzzle-image img {
+.puzzle-box-container .puzzle-box .puzzle-image img {
   height: 25rem;
 }
 
-.puzzle .puzzle-box-container .puzzle-content {
+.puzzle-box-container .puzzle-content {
   text-align: center;
   padding: 5%;
 }
 
-.puzzle .puzzle-box-container .puzzle-content h3 {
+.puzzle-box-container .puzzle-content h3 {
   font-family: 'Nunito';
   font-weight: 600;
   font-size: 1.8rem;
   margin-bottom: 3%;
 }
-.puzzle .puzzle-box-container .puzzle-content .price {
+.puzzle-box-container .puzzle-content .price {
   font-family: 'Maven Pro';
   font-weight: 300;
   font-size: 1.6rem;
   margin-bottom: 3%;
 }
-.puzzle .puzzle-box-container .puzzle-content .link-container {
+.puzzle-box-container .puzzle-content .link-container {
   display: flex;
   justify-content: center;
   gap: 1.25rem; /* Odstęp między linkami */
   margin-bottom: 3%;
   margin-top: 1%;
 }
-.puzzle .puzzle-box-container .puzzle-content .link-container a{
+.puzzle-box-container .puzzle-content .link-container a{
   font-family: 'Maven Pro';
   font-size: 1.5rem;
   font-weight: 300;
@@ -546,13 +567,13 @@ section {
   transition: 0.3s;
 }
 
-.puzzle .puzzle-box-container .puzzle-content .link-container a:hover{
+.puzzle-box-container .puzzle-content .link-container a:hover{
   box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 
-.puzzle .puzzle-box-container .puzzle-content .link-container #cart{
+.puzzle-box-container .puzzle-content .link-container #cart{
   font-family: 'Maven Pro';
   font-size: 1.5rem;
   font-weight: 300;
@@ -566,7 +587,7 @@ section {
   transition: 0.3s;
 }
 
-.puzzle .puzzle-box-container .puzzle-content .link-container #cart:hover{
+.puzzle-box-container .puzzle-content .link-container #cart:hover{
   box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
@@ -1157,10 +1178,22 @@ section {
 
 
 /* media queries */
+
+
+@media (max-width: 1400px) {
+  .puzzle {
+    height: 2600px;
+  }
+}
+@media (max-width: 1470px) {
+  .puzzle {
+    height: 2600px;
+  }
+}
 @media (max-width: 1140px) {
   
   .puzzle {
-    height: 2500px;
+    height: 4100px;
   }
 
 

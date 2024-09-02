@@ -183,7 +183,17 @@ def user_profile(request):
     if request.user.is_authenticated:
 
         user_profile = UserProfile.objects.get(user__id = request.user.id)
-        return render(request, "user_profile.html", {"user_profile": user_profile})
+        puzzles = Puzzle.objects.filter(owner = request.user)
+        return render(request, "user_profile.html", {"user_profile": user_profile, "puzzles": puzzles})
     else:
         messages.warning(request, "Musisz być zalogowany, aby wyświetlić profil...")
+        return redirect('home')
+    
+def my_puzzle(request):
+    if request.user.is_authenticated:
+
+        page_obj = Puzzle.objects.filter(owner = request.user)
+        return render(request, "my_puzzle_list.html", {"page_obj": page_obj})
+    else:
+        messages.warning(request, "Musisz być zalogowany, aby wyświetlić swoje puzzle...")
         return redirect('home')

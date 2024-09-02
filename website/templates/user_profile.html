@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+<!-- User profile info -->
+    <section class="user-info" id="user-info">
+        <div class="content">
+            <div class="user-info-container">
+                <div class="user-profile-title">Użytkownik: {{ user_profile.user.username}}</div>
+                
+                <p class="user-profile-info">Imię: {{user_profile.user.first_name}}</p>
+                <p class="user-profile-info">Nazwisko: {{user_profile.user.last_name}}</p>
+                <p class="user-profile-info">Adres email: {{user_profile.user.email}}</p>
+
+                <div class="link-container">
+                    <a href="">Zaktualizuj swoje dane </a>
+                    <a href="{% url 'update_password' %}">Zaktualizuj swoje hasło</a>
+                </div>
+
+                <div class="user-profile-title-2">Profil użytkownika: </div>
+                <p class="user-profile-info">Numer telefonu: {{user_profile.phone}}</p>
+                <p class="user-profile-info">Adresy zamieszkania: {{user_profile.address1}} {{user_profile.address2}}</p>
+
+                <p class="user-profile-info">Miasto zamieszkania: {{user_profile.city}}</p>
+                <p class="user-profile-info">Kod pocztowy: {{user_profile.zipcode}}</p>
+                <p class="user-profile-info">Kraj pochodzenia: {{user_profile.country}}</p>
+                <div class="link-container">
+                    <a href="{% url 'update_info' %}">Zaktualizuj swoj profil </a>
+                    <a href="">Moje puzzle </a>
+                    <a href="">Moje zamówienia </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}

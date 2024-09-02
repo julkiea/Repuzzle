@@ -11,4 +11,5 @@ urlpatterns = [
     path('puzzle/<int:pk>', views.puzzle, name= 'puzzle'),
     path('update_info/', views.update_info, name = 'update_info'),
     path('update_password/', views.update_password, name='update_password'),
+    path('user_profile/', views.user_profile, name='user_profile'),
 ]

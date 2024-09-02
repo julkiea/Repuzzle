@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class = "puzzle">
+    <div class="puzzle-box-container">
+        {% for puzzle in page_obj %}
+            <div class="puzzle-box">
+                <div class="puzzle-image">
+                    <img src="{{ puzzle.image.url }}">
+                </div>
+                <div class="puzzle-content">
+                    <h3>{{ puzzle.name }}</h3>
+                    <div class="price">{{ puzzle.price }} zł</div>
+                    <div class="link-container">
+                        <a href="{% url 'puzzle' puzzle.id %}">Szczegóły</a>
+                        <a href="#" id="trash"><i class="fa fa-trash"></i></a>
+                        <a href="#" id="cart"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; pierwsza</a>
+            <a href="?page={{ page_obj.previous_page_number }}">poprzednia</a>
+        {% endif %}
+        
+        <span class="current">
+            Strona {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}.
+        </span>
+        
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">następna</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">ostatnia &raquo;</a>
+        {% endif %}
+        
+        </span>
+    </div>
+
+</section>
+
+
+{% endblock %}

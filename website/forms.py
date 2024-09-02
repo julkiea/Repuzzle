@@ -135,14 +135,6 @@ class UserInfoForm(forms.ModelForm):
         })
     )
 
-    image = forms.FileField(
-        label="",
-        required=False,
-        widget=forms.ClearableFileInput(attrs={
-            'class': 'image-input',
-            'aria-label': 'Zdjęcie profilowe'
-        })
-    )
 
     class Meta():
         model = UserProfile

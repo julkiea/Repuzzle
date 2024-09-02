@@ -97,12 +97,16 @@ def add_puzzle(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = AddPuzzleForm(request.POST, request.FILES)
-
+        
             if form.is_valid():
+                
+
                 puzzle = form.save(commit=False)
+
                 puzzle.owner = request.user
                 puzzle.save()
 
+                form._save_m2m()
                 messages.success(request, "Puzzle zostały dodane pomyślnie!")
                 return redirect('home')
             else:
@@ -172,4 +176,14 @@ def update_password(request):
             return render(request, "update_password.html", {"form": form})
     else:
         messages.success(request, "Aby zaktualizować hasło, musisz być zalogowany...")
+        return redirect('home')
+    
+
+def user_profile(request):
+    if request.user.is_authenticated:
+
+        user_profile = UserProfile.objects.get(user__id = request.user.id)
+        return render(request, "user_profile.html", {"user_profile": user_profile})
+    else:
+        messages.warning(request, "Musisz być zalogowany, aby wyświetlić profil...")
         return redirect('home')

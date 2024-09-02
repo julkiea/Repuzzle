@@ -7,7 +7,13 @@
             <div class="puzzle-details-container">
                 <div class="puzzle-title">{{ puzzle.name }}</div>
                 <p class="puzzle-details">Producent: {{ puzzle.brand }}</p>
-                <p class="puzzle-details">Kategorie: {{ puzzle.category }}</p>
+                <p class="puzzle-details">Kategorie:    {% for category in puzzle.category.all %}
+                                                            {{ category.name }}
+                                                            {% if not forloop.last %}   
+                                                                , 
+                                                            {% endif %}
+                                                        {% endfor %}
+                </p>
                 <p class="puzzle-details">Stan: {{ puzzle.condition }}</p>
                 <p class="puzzle-details">Cena: {{ puzzle.price }}</p>
                 <p class="puzzle-details">Właściciel: <a href="#"> {{ puzzle.owner }} </a></p>

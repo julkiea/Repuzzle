@@ -436,6 +436,24 @@ section {
   transform: scale(1.05);
 }
 
+/* MY PUZZLE SECTION */
+
+.my-puzzle {
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ustawia przestrzeń między elementami, co umożliwia umieszczenie paginacji na dole */
+  background-color: white;
+  height: 1000px;
+  padding: 2rem 0;
+}
+
+.my-puzzle .puzzle-box-container {
+  max-width: 100%;
+  margin-top: -10%;
+}
+
 /* NEW PUZZLE SECTION */
 
 .news {
@@ -665,6 +683,26 @@ section {
 
 .puzzle-box-container .puzzle-content .link-container #cart:hover{
   box-shadow: 0 0 20px rgba(6, 51, 49, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.puzzle-box-container .puzzle-content .link-container #trash{
+  font-family: 'Maven Pro';
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: black; 
+  width: 4rem;
+  padding: 0.5rem;
+  border: 1px solid #951829; 
+  border-radius: 25%; 
+  background-color: #9e5761; 
+  box-shadow: 0 0 10px rgba(6, 51, 49, 0.1);
+  transition: 0.3s;
+}
+
+.puzzle-box-container .puzzle-content .link-container #trash:hover{
+  box-shadow: 0 0 20px #951829;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }

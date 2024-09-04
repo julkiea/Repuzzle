@@ -39,3 +39,8 @@ document.querySelectorAll('.close-btn').forEach(function(button) {
       }, 600);
     };
   });
+
+
+function confirmDeletion() {
+    return confirm("Czy na pewno chcesz usunąć puzzle?");
+}

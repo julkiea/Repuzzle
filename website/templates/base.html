@@ -57,8 +57,12 @@
             <a href="{% url 'home' %}#about">o nas</a>
             <a href="{% url 'home' %}#news">nowości</a>
             <a href="{% url 'puzzle_list' %}">puzzle</a>
-
-            <a href="#">kategorie</a>
+            <a href="#" id="categories-btn">kategorie</a>
+            <div class="categories-menu">
+              {% for category in categories %}
+                <a href="{% url 'filter_puzzles' %}?category={{ category.name }}">{{ category.name }}</a>
+              {% endfor %}
+            </div>
             <a href="{% url 'add_puzzle' %}">sprzedaj</a>
             <a href="{% url 'home' %}#contact">kontakt</a>
             {% if user.is_authenticated %}

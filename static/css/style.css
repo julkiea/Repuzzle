@@ -98,6 +98,8 @@ section {
     text-transform: capitalize; /* Pierwsza litera elementu ustawiona na wielką */
 }
 
+
+
 .navbar a::before {
   content: '';
   position: absolute;
@@ -130,7 +132,54 @@ section {
 #menu-btn {
   display: none;
 }
+.categories-menu a {
+  display: block;
+  font-family: 'Nunito';
+  font-weight: 400;
+  margin: 0.7rem;
+  
+  padding: 0.7rem;
+  font-size: 2rem;
+  color: black;
+  position: relative;
+  text-transform: none; 
+}
 
+.categories-menu a::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0.2rem;
+  background: black;
+  transition: .3s;
+}
+
+.categories-menu a:hover::before {
+  width: 100%;
+}
+
+.categories-menu {
+  display: none; 
+  position: absolute;
+  top: 100%; 
+  right: 0;  
+  background-color: white; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 0.4rem;
+  z-index: 1000; 
+  width: 100%;
+  height: auto;
+}
+
+.categories-menu.active {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 25% 25% 25% 25%; /* Pokaż menu, gdy ma klasę active */
+}
+
+/* USER PROFILE MENU */
 .user-profile a {
   display: block;
   font-family: 'Nunito';
@@ -443,15 +492,19 @@ section {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ustawia przestrzeń między elementami, co umożliwia umieszczenie paginacji na dole */
+  justify-content: space-evenly; /* Ustawia przestrzeń między elementami, co umożliwia umieszczenie paginacji na dole */
   background-color: white;
-  height: 1000px;
+  height: 800px;
   padding: 2rem 0;
 }
 
 .my-puzzle .puzzle-box-container {
   max-width: 100%;
   margin-top: -10%;
+}
+
+.no-puzzle-message-container {
+  height: 700px;
 }
 
 /* NEW PUZZLE SECTION */
@@ -558,13 +611,14 @@ section {
 
 /* Puzzle section */
 .puzzle {
-  margin-top: 6rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   background-color: #f1f9f5;
-  height: 1700px;
-  padding: 2rem 0;
+  height: auto;
+  padding: 2rem 1rem;
 }
 
 .puzzle-box-container {
@@ -587,6 +641,7 @@ section {
   max-height: 45rem;
   max-width: 40rem;
   min-width: 40rem;
+  background-color: white;
   
 }
 
@@ -1272,7 +1327,11 @@ section {
 
 
 /* media queries */
-
+/* @media (max-width: 1500px) {
+  .puzzle {
+    height: 2600px;
+  }
+}
 
 @media (max-width: 1400px) {
   .puzzle {
@@ -1283,11 +1342,15 @@ section {
   .puzzle {
     height: 2600px;
   }
-}
+} */
 @media (max-width: 1140px) {
   
-  .puzzle {
-    height: 4100px;
+  /* .puzzle {
+    height: 2500px;
+  } */
+
+  .puzzle-box-container .puzzle-box {
+    max-width: 30rem;
   }
 
 
@@ -1352,10 +1415,10 @@ section {
   .add-puzzle .box {
     top: 55%;
   }
-
+/* 
   .puzzle {
-    height: 3500px;
-  }
+    height: 2000px;
+  } */
 
   .puzzle-info .puzzle-info-container {
     height: auto;

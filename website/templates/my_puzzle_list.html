@@ -5,24 +5,32 @@
 
 <section class = "puzzle">
     <div class="puzzle-box-container">
-        {% for puzzle in page_obj %}
-            <div class="puzzle-box">
-                <div class="puzzle-image">
-                    <img src="{{ puzzle.image.url }}">
-                </div>
-                <div class="puzzle-content">
-                    <h3>{{ puzzle.name }}</h3>
-                    <div class="price">{{ puzzle.price }} zł</div>
-                    <div class="link-container">
-                        <a href="{% url 'puzzle' puzzle.id %}">Szczegóły</a>
-                        <a href="#" id="trash"><i class="fa fa-trash"></i></a>
-                        <a href="#" id="cart"><i class="fa fa-pencil"></i></a>
+        {% if page_obj %}
+            {% for puzzle in page_obj %}
+                <div class="puzzle-box">
+                    <div class="puzzle-image">
+                        <img src="{{ puzzle.image.url }}">
                     </div>
+                    <div class="puzzle-content">
+                        <h3>{{ puzzle.name }}</h3>
+                        <div class="price">{{ puzzle.price }} zł</div>
+                        <div class="link-container">
+                            <a href="{% url 'puzzle' puzzle.id %}">Szczegóły</a>
+                            <a href="{% url 'delete_puzzle' puzzle.id %}" id="trash" onclick="return confirmDeletion();">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                            <a href="#" id="cart"><i class="fa fa-pencil"></i></a>
+                        </div>
+                    </div>
+                    
                 </div>
-                
-            </div>
-        {% endfor %}
 
+            {% endfor %}
+        {% else %}
+
+        <h1>Aktualnie nie posiadasz własnych ogłoszeń z puzzlami.</h1>
+
+        {% endif %}
     </div>
 
     <div class="pagination">

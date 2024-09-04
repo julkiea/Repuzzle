@@ -13,5 +13,6 @@ urlpatterns = [
     path('update_password/', views.update_password, name='update_password'),
     path('user_profile/', views.user_profile, name='user_profile'),
     path('my_puzzle', views.my_puzzle, name='my_puzzle'),
-    path('puzzle/<int:pk>/delete/', views.delete_puzzle, name='delete_puzzle')
+    path('puzzle/<int:pk>/delete/', views.delete_puzzle, name='delete_puzzle'),
+    path('filter_puzzles/', views.filter_puzzles, name = 'filter_puzzles'),
 ]

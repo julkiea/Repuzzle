@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegisterUserForm, AddPuzzleForm, UserInfoForm, UpdatePasswordForm
-from .models import Puzzle, UserProfile
+from .models import Puzzle, UserProfile, Category
 from django.core.paginator import Paginator
 
 # Home page
@@ -206,3 +206,15 @@ def delete_puzzle(request, pk):
     else:
         messages.warning(request, "Musisz być zalogowany, aby usunąć puzzle...")
         return redirect('my_puzzle')
+    
+
+def filter_puzzles(request):
+        
+    puzzles = Puzzle.objects.all()
+
+    category_name = request.GET.get('category')
+    categories = Category.objects.all()
+    if category_name:
+        page_obj = puzzles.filter(category__name=category_name).distinct()
+
+    return render(request, 'puzzle_list.html', {"page_obj": page_obj, 'categories': categories})

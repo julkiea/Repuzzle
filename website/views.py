@@ -127,8 +127,6 @@ def puzzle_list(request):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    print(f"Page Number: {page_number}")
-    print(f"Page Object: {page_obj}")
     return render(request, 'puzzle_list.html', {'page_obj': page_obj})
 
 
@@ -197,3 +195,14 @@ def my_puzzle(request):
     else:
         messages.warning(request, "Musisz być zalogowany, aby wyświetlić swoje puzzle...")
         return redirect('home')
+    
+
+def delete_puzzle(request, pk):
+    if request.user.is_authenticated:
+        puzzle_to_delete = get_object_or_404(Puzzle, id=pk, owner=request.user)
+        puzzle_to_delete.delete()
+        messages.success(request, "Puzzle zostały usunięte pomyślnie!")
+        return redirect('my_puzzle')
+    else:
+        messages.warning(request, "Musisz być zalogowany, aby usunąć puzzle...")
+        return redirect('my_puzzle')

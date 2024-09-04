@@ -561,10 +561,10 @@ section {
   margin-top: 6rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ustawia przestrzeń między elementami, co umożliwia umieszczenie paginacji na dole */
+  justify-content: space-between;
   background-color: #f1f9f5;
   height: 1700px;
-  padding: 2rem 0; /* Dodatkowe wcięcie od góry i dołu */
+  padding: 2rem 0;
 }
 
 .puzzle-box-container {
@@ -577,26 +577,6 @@ section {
   margin-top: 4rem;
   padding: 0% 7%;
 }
-/* .puzzle {
-  display: flex;
-  justify-content: center;
-  background-color: #f1f9f5;
-  height: 1700px;
-}
-
-.puzzle .puzzle-box-container {
-  width: calc(100% - 6rem);
-  height: calc(100% - 6rem); 
-
-  top:55%;
-  left: 48%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-
-} */
-
 
 .puzzle-box-container .puzzle-box {
   flex: 1 1 30rem;

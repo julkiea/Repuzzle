@@ -982,7 +982,7 @@ section {
 .add-puzzle-form .input-field{
   max-width: 150rem;
   width: 100%;
-  height: 3.5rem;
+  height: auto;
   background-color: rgb(238, 234, 234);
   border: solid 0.2rem rgb(74, 73, 73);
   border-radius: 55px;
@@ -990,6 +990,32 @@ section {
   grid-template-columns: 15% 85%;
   padding: 0.4rem;
   margin: 0.5rem 0;
+}
+
+.add-puzzle-form .input-field-img{
+  max-width: 150rem;
+  width: 100%;
+  height: auto;
+  background-color: rgb(238, 234, 234);
+  border: solid 0.2rem rgb(74, 73, 73);
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  padding-left: 2rem;
+}
+.add-puzzle-form .input-field-img input {
+  font-family: 'Nunito';
+  font-size: 1rem;
+  color: black;
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 4;
+  font-weight: 600;
+  width: 32rem;
+
 }
 
 .add-puzzle-form .btn-submit {

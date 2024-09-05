@@ -218,3 +218,22 @@ def filter_puzzles(request):
         page_obj = puzzles.filter(category__name=category_name).distinct()
 
     return render(request, 'puzzle_list.html', {"page_obj": page_obj, 'categories': categories})
+
+def edit_puzzle(request, pk):
+    if request.user.is_authenticated:
+        task_to_edit = get_object_or_404(Puzzle, id=pk, owner=request.user)
+        form = AddPuzzleForm(request.POST or None, instance=task_to_edit)
+        if form.is_valid():
+            puzzle = form.save(commit=False)
+
+            puzzle.owner = request.user
+            puzzle.save()
+
+            form._save_m2m()
+            messages.success(request, "Puzzle zostały dodane pomyślnie!")
+            return redirect('home')
+        return render(request, 'edit_puzzle.html', {'form': form})
+    else:
+        messages.success(request, "Musisz być zalogowany, aby edytować ogłoszenie...")
+        return redirect('my_puzzle')
+    

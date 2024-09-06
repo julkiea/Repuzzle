@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import RegisterUserForm, AddPuzzleForm, UserInfoForm, UpdatePasswordForm
 from .models import Puzzle, UserProfile, Category
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Home page
 def home(request):
@@ -230,10 +231,27 @@ def edit_puzzle(request, pk):
             puzzle.save()
 
             form._save_m2m()
-            messages.success(request, "Puzzle zostały dodane pomyślnie!")
-            return redirect('home')
+            messages.success(request, "Puzzle zostały zedytowane pomyślnie pomyślnie!")
+            return redirect('my_puzzle')
         return render(request, 'edit_puzzle.html', {'form': form})
     else:
         messages.success(request, "Musisz być zalogowany, aby edytować ogłoszenie...")
         return redirect('my_puzzle')
-    
+
+def search_puzzle(request):
+    if request.method == "POST":
+        searched = request.POST.get("searched", "").strip()
+        
+        if not searched:
+            messages.error(request, "Pole wyszukiwania nie może być puste... Spróbuj jeszcze raz")
+            return redirect('home')
+        
+        page_obj = Puzzle.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+        
+        if not page_obj.exists():
+            messages.warning(request, "Przykro nam :(   Puzzle z Twojego wyszukiwania nie istnieją...")
+            return redirect('home')
+        return render(request, "puzzle_list.html", {"page_obj": page_obj})
+
+    return render(request, 'home.html')
+        

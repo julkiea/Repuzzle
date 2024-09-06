@@ -16,4 +16,5 @@ urlpatterns = [
     path('puzzle/<int:pk>/delete/', views.delete_puzzle, name='delete_puzzle'),
     path('filter_puzzles/', views.filter_puzzles, name = 'filter_puzzles'),
     path('puzzle/<int:pk>/edit/', views.edit_puzzle, name='edit_puzzle'),
+    path('search/', views.search_puzzle, name='search'),
 ]

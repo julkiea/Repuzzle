@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+import uuid
 
 # Create a user's profile model
 
@@ -61,3 +62,21 @@ class Puzzle(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
+    
+
+# Create a cart model 
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+
+    def __str__(self):
+        return str(self.id)
+
+
+# Create a cart item model 
+
+class CartItem(models.Model):
+    puzzle = models.ForeignKey(Puzzle, on_delete=models.CASCADE, related_name='items')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitems')

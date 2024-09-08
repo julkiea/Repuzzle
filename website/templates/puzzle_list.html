@@ -5,22 +5,30 @@
 
 <section class = "puzzle">
     <div class="puzzle-box-container">
-        {% for puzzle in page_obj %}
-            <div class="puzzle-box">
-                <div class="puzzle-image">
-                    <img src="{{ puzzle.image.url }}">
-                </div>
-                <div class="puzzle-content">
-                    <h3>{{ puzzle.name }}</h3>
-                    <div class="price">{{ puzzle.price }} zł</div>
-                    <div class="link-container">
-                        <a href="{% url 'puzzle' puzzle.id %}">Szczegóły</a>
-                        <a href="#" id="cart"><i class="fas fa-shopping-cart"></i></a>
+        {% if page_obj %}
+            {% for puzzle in page_obj %}
+                <div class="puzzle-box">
+                    <div class="puzzle-image">
+                        <img src="{{ puzzle.image.url }}">
                     </div>
+                    <div class="puzzle-content">
+                        <h3>{{ puzzle.name }}</h3>
+                        <div class="price">{{ puzzle.price }} zł</div>
+                        <div class="link-container">
+                            <a href="{% url 'puzzle' puzzle.id %}">Szczegóły</a>
+                            <button type="button" class="cart"><i class="fas fa-shopping-cart"></i></button>
+                            
+                        </div>
+                    </div>
+                    
                 </div>
-                
+            {% endfor %}
+            {% else %}
+            <div class="no-puzzle-message-container">
+                <h1>Aktualnie nie ma puzzli w tej kategorii.</h1>
             </div>
-        {% endfor %}
+            {% endif %}
+
 
     </div>
 
